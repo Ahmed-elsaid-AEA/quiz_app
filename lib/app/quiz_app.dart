@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/resources/font_managers.dart';
+import 'package:quiz_app/core/resources/routes_manager.dart';
 import 'package:quiz_app/view/splash/screens/splash_screen.dart';
 
 class QuizApp extends StatelessWidget {
@@ -8,11 +9,10 @@ class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        fontFamily: FontsName.kFontMontserrat
-      ),
+      routes: RoutesManager.routes,
+      theme: ThemeData(fontFamily: FontsName.kFontMontserrat),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      initialRoute: RoutesName.kSplashScreen,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/controller/splash/splash_controller.dart';
 import 'package:quiz_app/core/resources/color_manager.dart';
 import 'package:quiz_app/core/resources/font_managers.dart';
 import 'package:quiz_app/core/resources/height_manger.dart';
@@ -25,9 +26,7 @@ class SplashScreen extends StatelessWidget {
             ),
             CustomButtonSplashScreen(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => OnBoardingScreen(),
-                ));
+                SplashController.goToOnBoardingPage(context);
               },
             )
           ],
