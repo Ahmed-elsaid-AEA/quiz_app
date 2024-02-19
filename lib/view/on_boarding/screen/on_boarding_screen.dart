@@ -5,6 +5,33 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    PageController pageController = PageController(
+      initialPage: 1,
+    );
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(scrollDirection: Axis.vertical,
+              onPageChanged: (value) {
+print(value);
+              },
+              controller:pageController ,
+              itemCount: 3,
+              itemBuilder: (context, index) =>
+                  Container(
+                color: index % 2 == 0 ? Colors.red : Colors.green,
+              ),
+            ),
+          ),
+          ElevatedButton(
+              onPressed: () {
+                pageController.animateToPage(2,
+                    duration: Duration(seconds: 10), curve: Curves.easeInCirc);
+              },
+              child: Text("data"))
+        ],
+      ),
+    );
   }
 }
