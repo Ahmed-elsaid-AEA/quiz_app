@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quiz_app/core/resources/assets_values_manager.dart';
+import 'package:quiz_app/core/resources/routes_manager.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});
@@ -11,26 +14,8 @@ class OnBoardingScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-            child: PageView.builder(scrollDirection: Axis.vertical,
-              onPageChanged: (value) {
-print(value);
-              },
-              controller:pageController ,
-              itemCount: 3,
-              itemBuilder: (context, index) =>
-                  Container(
-                color: index % 2 == 0 ? Colors.red : Colors.green,
-              ),
-            ),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                pageController.animateToPage(2,
-                    duration: Duration(seconds: 10), curve: Curves.easeInCirc);
-              },
-              child: Text("data"))
-        ],
+
+         ],
       ),
     );
   }
