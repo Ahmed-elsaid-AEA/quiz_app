@@ -11,12 +11,14 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
   const CustomBottomNavBarOnBoardgingScreen({
     super.key,
     required this.dotCount,
-    required this.onTap,
+    required this.onTapDotIndicator,
     required this.outputDataDotIndicator,
+    this.onTapNext,
   });
 
+  final GestureTapCallback? onTapNext;
   final int dotCount;
-  final void Function(int index) onTap;
+  final void Function(int index) onTapDotIndicator;
   final Stream<int> outputDataDotIndicator;
 
   @override
@@ -37,7 +39,7 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
             stream: outputDataDotIndicator,
             builder: (context, snapshot) => DotsIndicator(
               onTap: (position) {
-                onTap(position);
+                onTapDotIndicator(position);
               },
               decorator: const DotsDecorator(
                   activeSize: Size(HeightValuesManager.w12, HeightManager.h12),
@@ -48,9 +50,12 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
               position: snapshot.data == null ? 0 : snapshot.data!,
             ),
           ),
-          const Text(StringsValues.kNext,
-              style: TextStyle(
-                  fontSize: FontSize.f15, fontWeight: FontWeight.w600)),
+          InkWell(
+            onTap: onTapNext,
+            child: const Text(StringsValues.kNext,
+                style: TextStyle(
+                    fontSize: FontSize.f15, fontWeight: FontWeight.w600)),
+          ),
         ],
       ),
     );

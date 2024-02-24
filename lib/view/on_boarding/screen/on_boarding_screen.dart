@@ -28,16 +28,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavBarOnBoardgingScreen(
+        onTapNext:() {
+_onBoardingController.onTabNext();
+        },
         outputDataDotIndicator: _onBoardingController.outPutData,
-         onTap: (index) {
+        onTapDotIndicator: (index) {
           _onBoardingController.onTapDotIndicator(index);
-
         },
         dotCount: 3,
       ),
       body: const Column(
         children: [],
-      ),
+      )
+      ,
     );
   }
 }

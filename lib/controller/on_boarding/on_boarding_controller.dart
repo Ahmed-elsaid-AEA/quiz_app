@@ -17,4 +17,14 @@ class OnBoardingController {
     currentPositionPage = indexPosition;
     inputData.add(currentPositionPage);
   }
+
+  void onTabNext() {
+    if (currentPositionPage == 2) {
+      currentPositionPage = 0;
+    } else {
+      currentPositionPage = currentPositionPage + 1;
+    }
+
+    inputData.add(currentPositionPage);
+  }
 }
