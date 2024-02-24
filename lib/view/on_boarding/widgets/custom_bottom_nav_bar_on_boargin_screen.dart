@@ -14,12 +14,14 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
     required this.onTapDotIndicator,
     required this.outputDataDotIndicator,
     this.onTapNext,
+    required this.outputDataTextStart,
   });
 
   final GestureTapCallback? onTapNext;
   final int dotCount;
   final void Function(int index) onTapDotIndicator;
   final Stream<int> outputDataDotIndicator;
+  final Stream<int> outputDataTextStart;
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +54,17 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: onTapNext,
-            child: const Text(StringsValues.kNext,
-                style: TextStyle(
-                    fontSize: FontSize.f15, fontWeight: FontWeight.w600)),
+            child: StreamBuilder<int>(
+              stream: outputDataTextStart,
+              builder: (context, snapshot) => Text(
+                  snapshot.data == null
+                      ? StringsValues.kNext
+                      : snapshot.data == dotCount - 1
+                          ? StringsValues.kStart
+                          : StringsValues.kNext,
+                  style: const TextStyle(
+                      fontSize: FontSize.f15, fontWeight: FontWeight.w600)),
+            ),
           ),
         ],
       ),

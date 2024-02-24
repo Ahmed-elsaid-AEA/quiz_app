@@ -3,6 +3,7 @@ class StringsValues{
   static const String kGetStarted="Get Started";
   static const String kSkip="Skip";
   static const String kNext="Next";
+  static const String kStart="Start";
   static const String kOnBoardingTitle1=   "Synonyms for QUIZ";
   static const String kOnBoardingTitle2=   "Antonyms of QUIZ";
   static const String kOnBoardingTitle3=   "Cool Quiz";

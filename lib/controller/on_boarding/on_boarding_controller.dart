@@ -4,25 +4,34 @@ import 'package:flutter/material.dart';
 
 class OnBoardingController {
   int currentPositionPage = 0;
-  late StreamController<int> streamController;
-  late Sink<int> inputData;
-  late Stream<int> outPutData;
+  late StreamController<int> streamControllerDotIndicator;
+  late StreamController<int> streamControllerStartText;
+  late Sink<int> inputDataDotIndicator;
+  late Stream<int> outPutDataDotIndicator;
   late PageController onBoardgingPageViewController;
+  late Sink<int> inputDataStartText;
+  late Stream<int> outPutDataStartText;
 
   OnBoardingController() {
-    streamController = StreamController();
-    inputData = streamController.sink;
-    outPutData = streamController.stream;
-    inputData.add(currentPositionPage);
-    onBoardgingPageViewController=PageController(initialPage: currentPositionPage);
-
+    streamControllerDotIndicator = StreamController();
+    inputDataDotIndicator = streamControllerDotIndicator.sink;
+    outPutDataDotIndicator = streamControllerDotIndicator.stream;
+    streamControllerStartText = StreamController();
+    inputDataStartText = streamControllerStartText.sink;
+    outPutDataStartText = streamControllerStartText.stream;
+    inputDataDotIndicator.add(currentPositionPage);
+    inputDataStartText.add(currentPositionPage);
+    onBoardgingPageViewController =
+        PageController(initialPage: currentPositionPage);
   }
 
   void onTapDotIndicator(int indexPosition) {
     currentPositionPage = indexPosition;
-    inputData.add(currentPositionPage);
-    onBoardgingPageViewController.animateToPage(currentPositionPage, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+    inputDataDotIndicator.add(currentPositionPage);
+    onBoardgingPageViewController.animateToPage(currentPositionPage,
+        duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
 
+    inputDataStartText.add(currentPositionPage);
   }
 
   void onTabNext() {
@@ -31,13 +40,18 @@ class OnBoardingController {
     } else {
       currentPositionPage = currentPositionPage + 1;
     }
-onBoardgingPageViewController.animateToPage(currentPositionPage, duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
-    inputData.add(currentPositionPage);
+    onBoardgingPageViewController.animateToPage(currentPositionPage,
+        duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+    inputDataDotIndicator.add(currentPositionPage);
+
+    inputDataStartText.add(currentPositionPage);
   }
 
   void onDispose() {
-    inputData.close();
-    streamController.close();
+    inputDataDotIndicator.close();
+    streamControllerDotIndicator.close();
+    inputDataStartText.close();
+    streamControllerStartText.close();
     onBoardgingPageViewController.dispose();
   }
 }
