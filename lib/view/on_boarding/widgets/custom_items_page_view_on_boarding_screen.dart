@@ -21,7 +21,9 @@ class CustomItemsPageViewOnBoardingScreen extends StatelessWidget {
       child: Center(
         child: SingleChildScrollView(
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              Column(
+
+                  crossAxisAlignment: CrossAxisAlignment.center, children: [
             SvgPicture.asset(
                 height: HeightValuesManager.h400,
                 onBoardingScreenModel.onBoardingImage),
@@ -36,10 +38,12 @@ class CustomItemsPageViewOnBoardingScreen extends StatelessWidget {
             const SizedBox(
               height: HeightValuesManager.h24,
             ),
-            Text(onBoardingScreenModel.onBoardingTitle,
+            Text(
+              textAlign: TextAlign.center,
+                onBoardingScreenModel.onBoardingDesc,
                 style: const TextStyle(
                   fontSize: FontSize.f21,
-                ))
+                )),
           ]),
         ),
       ),

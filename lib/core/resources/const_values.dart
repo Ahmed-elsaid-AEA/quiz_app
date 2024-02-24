@@ -5,10 +5,10 @@ import 'package:quiz_app/models/on_boarding_screen/on_boarding_screen_model.dart
 class ConstValue {
   static List<OnBoardingScreenModel> onBoardingListConst = [
     OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage1,
-        StringsValues.kOnBoardingTitle1, StringsValues.kOnBoardingTitle1),
+        StringsValues.kOnBoardingTitle1, StringsValues.kOnBoardingDesc1),
     OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage2,
-        StringsValues.kOnBoardingTitle1, StringsValues.kOnBoardingTitle1),
+        StringsValues.kOnBoardingTitle2, StringsValues.kOnBoardingDesc2),
     OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage3,
-        StringsValues.kOnBoardingTitle1, StringsValues.kOnBoardingTitle1),
+        StringsValues.kOnBoardingTitle3, StringsValues.kOnBoardingDesc3),
   ];
 }
