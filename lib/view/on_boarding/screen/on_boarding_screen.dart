@@ -47,14 +47,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         },
         dotCount: 3,
       ),
-
       body: SafeArea(
         child: PageView.builder(
+          controller: _onBoardingController.onBoardgingPageViewController,
           itemCount: ConstValue.onBoardingListConst.length,
-          itemBuilder: (context, index) =>
-              CustomItemsPageViewOnBoardingScreen(
-                onBoardingScreenModel: ConstValue.onBoardingListConst[index],
-              ),
+          itemBuilder: (context, index) => CustomItemsPageViewOnBoardingScreen(
+            onBoardingScreenModel: ConstValue.onBoardingListConst[index],
+          ),
         ),
       ),
     );
