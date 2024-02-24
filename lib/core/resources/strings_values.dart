@@ -3,4 +3,5 @@ class StringsValues{
   static const String kGetStarted="Get Started";
   static const String kSkip="Skip";
   static const String kNext="Next";
+  static const String kOnBoardingTitle1=   "Synonyms for QUIZ";
 }
