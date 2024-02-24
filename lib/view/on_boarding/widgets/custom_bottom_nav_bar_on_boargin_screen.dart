@@ -14,10 +14,11 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
     required this.onTapDotIndicator,
     required this.outputDataDotIndicator,
     this.onTapNext,
-    required this.outputDataTextStart,
+    required this.outputDataTextStart, this.onTapSkip,
   });
 
   final GestureTapCallback? onTapNext;
+  final GestureTapCallback? onTapSkip;
   final int dotCount;
   final void Function(int index) onTapDotIndicator;
   final Stream<int> outputDataDotIndicator;
@@ -33,9 +34,12 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            StringsValues.kSkip,
-            style: TextStyle(fontSize: FontSize.f15),
+          InkWell(
+            onTap: onTapSkip,
+            child: const Text(
+              StringsValues.kSkip,
+              style: TextStyle(fontSize: FontSize.f15),
+            ),
           ),
           StreamBuilder(
             stream: outputDataDotIndicator,

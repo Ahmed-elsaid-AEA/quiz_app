@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/resources/routes_manager.dart';
 
 class OnBoardingController {
   int currentPositionPage = 0;
@@ -34,9 +35,9 @@ class OnBoardingController {
     inputDataStartText.add(currentPositionPage);
   }
 
-  void onTabNext() {
+  void onTabNext(BuildContext context) {
     if (currentPositionPage == 2) {
-      currentPositionPage = 0;
+      goToLoginPage(context: context);
     } else {
       currentPositionPage = currentPositionPage + 1;
     }
@@ -45,6 +46,11 @@ class OnBoardingController {
     inputDataDotIndicator.add(currentPositionPage);
 
     inputDataStartText.add(currentPositionPage);
+  }
+
+  void goToLoginPage({required BuildContext context}) {
+    Navigator.pushNamedAndRemoveUntil(
+        context, RoutesName.kLoginScreen, (route) => false);
   }
 
   void onDispose() {

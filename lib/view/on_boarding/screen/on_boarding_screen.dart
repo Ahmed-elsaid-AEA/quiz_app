@@ -38,15 +38,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavBarOnBoardgingScreen(
+        onTapSkip: () {
+          _onBoardingController.goToLoginPage(context: context);
+        },
         outputDataTextStart: _onBoardingController.outPutDataStartText,
         onTapNext: () {
-          _onBoardingController.onTabNext();
+          _onBoardingController.onTabNext(context);
         },
         outputDataDotIndicator: _onBoardingController.outPutDataDotIndicator,
         onTapDotIndicator: (index) {
           _onBoardingController.onTapDotIndicator(index);
         },
-        dotCount:  ConstValue.onBoardingListConst.length,
+        dotCount: ConstValue.onBoardingListConst.length,
       ),
       body: SafeArea(
         child: PageView.builder(
