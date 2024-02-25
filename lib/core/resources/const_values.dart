@@ -10,11 +10,5 @@ class ConstValue {
         StringsValues.kOnBoardingTitle2, StringsValues.kOnBoardingDesc2),
     OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage3,
         StringsValues.kOnBoardingTitle3, StringsValues.kOnBoardingDesc3),
-    OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage3,
-        StringsValues.kOnBoardingTitle3, StringsValues.kOnBoardingDesc3),
-    OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage3,
-        StringsValues.kOnBoardingTitle3, StringsValues.kOnBoardingDesc3),
-    OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage3,
-        StringsValues.kOnBoardingTitle3, StringsValues.kOnBoardingDesc3),
   ];
 }
