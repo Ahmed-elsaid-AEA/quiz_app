@@ -20,6 +20,7 @@ class OnBoardingScreen extends StatefulWidget {
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   late OnBoardingController _onBoardingController;
+  bool tabbed = false;
 
   @override
   void initState() {
@@ -47,6 +48,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         },
         outputDataDotIndicator: _onBoardingController.outPutDataDotIndicator,
         onTapDotIndicator: (index) {
+          _onBoardingController.isTappedDotIndicator = true;
           _onBoardingController.onTapDotIndicator(index);
         },
         dotCount: ConstValue.onBoardingListConst.length,
@@ -54,7 +56,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       body: SafeArea(
         child: PageView.builder(
           onPageChanged: (value) {
-            _onBoardingController.onTapDotIndicator(value);
+            if (_onBoardingController.isTappedDotIndicator == true) {
+              if (_onBoardingController.onBoardgingPageViewController.page!
+                      .round() ==
+                  _onBoardingController.currentPositionPage) {
+                _onBoardingController.isTappedDotIndicator = false;
+              }
+            } else {
+              _onBoardingController.onTapDotIndicator(value);
+            }
           },
           controller: _onBoardingController.onBoardgingPageViewController,
           itemCount: ConstValue.onBoardingListConst.length,

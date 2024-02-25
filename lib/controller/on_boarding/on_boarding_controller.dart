@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/resources/const_values.dart';
 import 'package:quiz_app/core/resources/routes_manager.dart';
 
 class OnBoardingController {
@@ -12,6 +13,7 @@ class OnBoardingController {
   late PageController onBoardgingPageViewController;
   late Sink<int> inputDataStartText;
   late Stream<int> outPutDataStartText;
+  bool isTappedDotIndicator = false;
 
   OnBoardingController() {
     streamControllerDotIndicator = StreamController();
@@ -36,7 +38,7 @@ class OnBoardingController {
   }
 
   void onTabNext(BuildContext context) {
-    if (currentPositionPage == 2) {
+    if (currentPositionPage == ConstValue.onBoardingListConst.length - 1) {
       goToLoginPage(context: context);
     } else {
       currentPositionPage = currentPositionPage + 1;
