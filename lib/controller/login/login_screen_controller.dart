@@ -4,18 +4,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:quiz_app/core/resources/routes_manager.dart';
 
 class LoginScreenController {
-  String name = "";
   late GlobalKey<FormState> formKeyName;
   bool buttonIsActive = false;
   late StreamController<bool> streamControllerButtonStatus;
   late Sink<bool> inputDataButtonStatus;
   late Stream<bool> isActiveOutputStream;
+  late TextEditingController controllerNameTextField;
 
   LoginScreenController() {
     formKeyName = GlobalKey();
     streamControllerButtonStatus = StreamController();
     inputDataButtonStatus = streamControllerButtonStatus.sink;
     isActiveOutputStream = streamControllerButtonStatus.stream;
+    controllerNameTextField = TextEditingController();
     inputDataButtonStatus.add(buttonIsActive);
   }
 
@@ -47,6 +48,6 @@ class LoginScreenController {
 
   void navigateToQuizApp(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(
-        arguments: name, context, RoutesName.kQuizScreen, (route) => false);
+        arguments: controllerNameTextField.text, context, RoutesName.kQuizScreen, (route) => false);
   }
 }
