@@ -21,7 +21,7 @@ class CustomButtonSplashScreen extends StatelessWidget {
         ),
         alignment: Alignment.center,
         width: double.infinity,
-        height: HeightManager.h70,
+        height: HeightValuesManager.h70,
         child: const Text(
           StringsValues.kGetStarted,
           style: TextStyle(

@@ -12,8 +12,10 @@ class CustomLogoLoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
+
       StringsValues.kTextLogo,
       style: GoogleFonts.montserrat(
+        height: .7,
           fontSize: FontSize.f200, color: ColorManager.kPrimaryColor),
     );
   }

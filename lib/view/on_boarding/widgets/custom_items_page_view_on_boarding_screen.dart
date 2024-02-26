@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quiz_app/core/resources/assets_values_manager.dart';
 import 'package:quiz_app/core/resources/font_managers.dart';
+import 'package:quiz_app/core/resources/height_manger.dart';
 import 'package:quiz_app/core/resources/strings_values.dart';
 import 'package:quiz_app/core/resources/width_values_managers.dart';
 import 'package:quiz_app/models/on_boarding_screen/on_boarding_screen_model.dart';
@@ -25,10 +26,10 @@ class CustomItemsPageViewOnBoardingScreen extends StatelessWidget {
 
                   crossAxisAlignment: CrossAxisAlignment.center, children: [
             SvgPicture.asset(
-                height: HeightValuesManager.h400,
+                height:HeightValuesManager.h400,
                 onBoardingScreenModel.onBoardingImage),
             const SizedBox(
-              height: HeightValuesManager.h108,
+              height:HeightValuesManager.h108,
             ),
             Text(
               onBoardingScreenModel.onBoardingTitle,

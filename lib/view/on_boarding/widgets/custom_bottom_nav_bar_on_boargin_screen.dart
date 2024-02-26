@@ -48,8 +48,8 @@ class CustomBottomNavBarOnBoardgingScreen extends StatelessWidget {
                 onTapDotIndicator(position);
               },
               decorator: const DotsDecorator(
-                  activeSize: Size(HeightValuesManager.h12, HeightManager.h12),
-                  size: Size(HeightValuesManager.h12, HeightManager.h12),
+                  activeSize: Size(HeightValuesManager.h12, HeightValuesManager.h12),
+                  size: Size(HeightValuesManager.h12, HeightValuesManager.h12),
                   color: ColorManager.kGreyColor,
                   activeColor: ColorManager.kDarkPanfseg),
               dotsCount: dotCount,
