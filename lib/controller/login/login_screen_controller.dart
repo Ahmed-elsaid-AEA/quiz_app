@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/core/resources/routes_manager.dart';
 
 class LoginScreenController {
   String name = "";
@@ -37,5 +38,16 @@ class LoginScreenController {
       buttonIsActive = false;
     }
     inputDataButtonStatus.add(buttonIsActive);
+  }
+
+  onDispose() {
+    inputDataButtonStatus.close();
+    streamControllerButtonStatus.close();
+  }
+
+  void navigateToQuizApp(BuildContext context) {
+    Navigator.pushNamedAndRemoveUntil(
+        context, RoutesName.kQuizScreen,
+            (route) => false);
   }
 }

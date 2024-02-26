@@ -33,6 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _loginScreenController.onDispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -69,8 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 isActiveOutputStream:
                     _loginScreenController.isActiveOutputStream,
                 onPressed: () {
-                  print("okl");
-                  //
+              _loginScreenController.navigateToQuizApp(context);
                 },
               )
             ],
