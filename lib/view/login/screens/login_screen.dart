@@ -8,6 +8,7 @@ import 'package:quiz_app/core/resources/routes_manager.dart';
 import 'package:quiz_app/core/resources/strings_values.dart';
 import 'package:quiz_app/core/resources/width_values_managers.dart';
 import 'package:quiz_app/view/login/widgets/custom_text_enter_your_name_login_screen.dart';
+import 'package:quiz_app/view/on_boarding/widgets/custom_text_field_name_login_screen.dart';
 
 import '../widgets/custom_logo_login_screen.dart';
 
@@ -25,11 +26,16 @@ class LoginScreen extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage(AssetsValuesManager.kLoginScreenImage),
                 fit: BoxFit.cover)),
-        child: const Column(
-
+        child: Column(
           children: [
             CustomLogoLoginScreen(),
-            CustomTextEnterYourNameLoginScreen()
+            CustomTextEnterYourNameLoginScreen(),
+            const SizedBox(
+              height: HeightValuesManager.h10,
+            ),
+            CustomTextFieldNameLoginScreen(
+              onChanged: (value) {},
+            )
           ],
         ),
       ),
