@@ -47,7 +47,6 @@ class LoginScreenController {
 
   void navigateToQuizApp(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(
-        context, RoutesName.kQuizScreen,
-            (route) => false);
+        arguments: name, context, RoutesName.kQuizScreen, (route) => false);
   }
 }

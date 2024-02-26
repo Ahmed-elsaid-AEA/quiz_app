@@ -38,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _loginScreenController.onDispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return _loginScreenController.validateName(value);
                     },
                     onChanged: (value) {
+                      _loginScreenController.name = value;
                       _loginScreenController.onChangedTextFormField();
                     },
                     keyForm: _loginScreenController.formKeyName,
@@ -75,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 isActiveOutputStream:
                     _loginScreenController.isActiveOutputStream,
                 onPressed: () {
-              _loginScreenController.navigateToQuizApp(context);
+                  _loginScreenController.navigateToQuizApp(context);
                 },
               )
             ],
