@@ -10,7 +10,7 @@ import 'package:quiz_app/core/resources/routes_manager.dart';
 import 'package:quiz_app/core/resources/strings_values.dart';
 import 'package:quiz_app/core/resources/width_values_managers.dart';
 import 'package:quiz_app/view/login/widgets/custom_text_enter_your_name_login_screen.dart';
-import 'package:quiz_app/view/on_boarding/widgets/custom_text_field_name_login_screen.dart';
+import 'package:quiz_app/view/login/widgets/custom_text_form_field_name_login_screen.dart';
 
 import '../../../core/widgets/custom_material_button.dart';
 import '../widgets/custom_logo_login_screen.dart';
@@ -24,12 +24,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late LoginScreenController _loginScreenController;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _loginScreenController=LoginScreenController();
+    _loginScreenController = LoginScreenController();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,33 +48,32 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const CustomLogoLoginScreen(),
-
               Column(
                 children: [
                   const CustomTextEnterYourNameLoginScreen(),
                   const SizedBox(
                     height: HeightValuesManager.h10,
                   ),
-                  CustomTextFieldNameLoginScreen(
-                    onChanged: (value) {
-                      _loginScreenController.name=value;
-                      setState(() {
-
-                      });
-                      print(_loginScreenController.name);
+                  CustomTextFormFieldNameLoginScreen(
+                    validator: (value) {
+                      return _loginScreenController.validateName(value);
                     },
+                    onChanged: (value) {
+                      // _loginScreenController.name =
+                      if(_loginScreenController.formKeyName.currentState!.validate()){
+                        print("go to naviagtion");
+                      }
+                    },
+                    keyForm: _loginScreenController.formKeyName,
                   ),
-                  if(_loginScreenController.name.isEmpty)
-                    Text("Should enter name",style: TextStyle(color: Colors.red)),
                 ],
               ),
-
               CustomStartButtonLoginScreen(
                 onPressed: () {
                   if (_loginScreenController.name.isEmpty) {
                     print("empty");
                     //
-                  }  else {
+                  } else {
                     print("not empty");
                     //navigation
                   }
@@ -85,4 +86,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-
