@@ -14,32 +14,41 @@ class CustomStartButtonLoginScreen extends StatelessWidget {
   const CustomStartButtonLoginScreen({
     super.key,
     required this.onPressed,
-    this.isActive = false,
+    required this.isActiveOutputStream,
   });
 
   final VoidCallback onPressed;
-  final bool? isActive;
+  final Stream<bool> isActiveOutputStream;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      height: WidthValuesManagers.w10,
-      minWidth: WidthValuesManagers.w20,
-      onPressed: isActive == true ? onPressed : null,
-      child: Container(
-        alignment: AlignmentDirectional.center,
-        height: HeightValuesManager.h59,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: isActive == true
-                ? ColorManager.kPrimaryColor
-                : ColorManager.kGreyColor,
-            borderRadius: const BorderRadius.all(Radius.circular(20))),
-        child: Text(
-          StringsValues.kStart,
-          style: GoogleFonts.baloo2(
-            color: ColorManager.kWhiteColor,
-            fontSize: FontSize.f24,
+    return StreamBuilder(
+      stream: isActiveOutputStream,
+      builder: (context, snapshot) => MaterialButton(
+        height: WidthValuesManagers.w10,
+        minWidth: WidthValuesManagers.w20,
+        onPressed: snapshot.data == null
+            ? null
+            : snapshot.data == true
+                ? onPressed
+                : null,
+        child: Container(
+          alignment: AlignmentDirectional.center,
+          height: HeightValuesManager.h59,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: snapshot.data == null
+                  ? ColorManager.kGreyColor
+                  : snapshot.data == true
+                      ? ColorManager.kPrimaryColor
+                      : ColorManager.kGreyColor,
+              borderRadius: const BorderRadius.all(Radius.circular(20))),
+          child: Text(
+            StringsValues.kStart,
+            style: GoogleFonts.baloo2(
+              color: ColorManager.kWhiteColor,
+              fontSize: FontSize.f24,
+            ),
           ),
         ),
       ),

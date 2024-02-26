@@ -59,29 +59,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       return _loginScreenController.validateName(value);
                     },
                     onChanged: (value) {
-                      // _loginScreenController.name =
-                      if (_loginScreenController.formKeyName.currentState!
-                          .validate()) {
-                        //navigation
-                        _loginScreenController.buttonIsActive = true;
-                      } else {
-                        _loginScreenController.buttonIsActive = false;
-                      }
-                      setState(() {
-
-                      });
+                      _loginScreenController.onChangedTextFormField();
                     },
                     keyForm: _loginScreenController.formKeyName,
                   ),
                 ],
               ),
               CustomStartButtonLoginScreen(
-                isActive: _loginScreenController.buttonIsActive,
+                isActiveOutputStream:
+                    _loginScreenController.isActiveOutputStream,
                 onPressed: () {
-
-                    print("okl");
-                    //
-
+                  print("okl");
+                  //
                 },
               )
             ],
