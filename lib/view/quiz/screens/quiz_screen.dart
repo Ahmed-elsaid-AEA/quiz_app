@@ -3,9 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quiz_app/core/resources/color_manager.dart';
 import 'package:quiz_app/core/resources/font_managers.dart';
+import 'package:quiz_app/core/resources/height_manger.dart';
 import 'package:quiz_app/core/resources/padding_values_manager.dart';
 import 'package:quiz_app/core/resources/strings_values.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_app_bar_quiz_screen.dart';
+import 'package:quiz_app/view/quiz/widgets/custom_circle_percent_indictor_quiz_screen.dart';
+import 'package:quiz_app/view/quiz/widgets/custom_question_title_quiz_screen.dart';
 
 class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key});
@@ -21,18 +24,22 @@ class QuizScreen extends StatelessWidget {
         child: Container(
           width: double.infinity,
           child: Column(
-            crossAxisAlignment:CrossAxisAlignment.center ,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                height: HeightValuesManager.h88,
+              ),
               Stack(
+                clipBehavior: Clip.none,
                 children: [
-                  CircularPercentIndicator(
-                    radius: 43,
-                    percent: 1,
-                    center: Text("30",style: GoogleFonts.baloo2(fontWeight: FontWeight.w700,fontSize: FontSize.f32),),
-                    backgroundColor: ColorManager.kPrimaryColor.withOpacity(.38),
-                    animationDuration: 30000,
-                    animation: true,
-                    progressColor: ColorManager.kPrimaryColor,
+                  CustomQuestionTitleQuizScreen(text: "text"),
+                  const Positioned(
+                    top: -29,
+                    right: 0,
+                    left: 0,
+                    child: CustomCirclePercentIndicatorQuizScreen(
+                      text: '30',
+                    ),
                   )
                 ],
               )
@@ -49,3 +56,4 @@ class QuizScreen extends StatelessWidget {
     );
   }
 }
+
