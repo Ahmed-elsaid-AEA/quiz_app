@@ -38,8 +38,7 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_svg: ^2.0.9
   dots_indicator: ^3.0.0
-  geolocator: ^7.6.2
-  geocoding: ^2.2.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
