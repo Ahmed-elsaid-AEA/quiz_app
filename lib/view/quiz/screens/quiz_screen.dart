@@ -6,8 +6,10 @@ import 'package:quiz_app/core/resources/font_managers.dart';
 import 'package:quiz_app/core/resources/height_manger.dart';
 import 'package:quiz_app/core/resources/padding_values_manager.dart';
 import 'package:quiz_app/core/resources/strings_values.dart';
+import 'package:quiz_app/core/resources/width_values_managers.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_app_bar_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_circle_percent_indictor_quiz_screen.dart';
+import 'package:quiz_app/view/quiz/widgets/custom_item_radio_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_question_title_quiz_screen.dart';
 
 class QuizScreen extends StatelessWidget {
@@ -32,7 +34,9 @@ class QuizScreen extends StatelessWidget {
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  CustomQuestionTitleQuizScreen(text: "text"),
+                  CustomQuestionTitleQuizScreen(
+                      text:
+                          "In what year did the United States host the FIFA World Cup for the first time?"),
                   const Positioned(
                     top: -29,
                     right: 0,
@@ -42,7 +46,16 @@ class QuizScreen extends StatelessWidget {
                     ),
                   )
                 ],
-              )
+              ),
+              SizedBox(
+                height: HeightValuesManager.h70,
+              ),
+              CustomItemRadioQuizScreen(),
+              CustomItemRadioQuizScreen(),
+              CustomItemRadioQuizScreen(),
+              CustomItemRadioQuizScreen(),
+              CustomItemRadioQuizScreen(),
+              CustomItemRadioQuizScreen(),
             ],
           ),
         ),
@@ -56,4 +69,3 @@ class QuizScreen extends StatelessWidget {
     );
   }
 }
-
