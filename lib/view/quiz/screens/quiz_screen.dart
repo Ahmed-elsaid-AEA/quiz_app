@@ -11,6 +11,7 @@ import 'package:quiz_app/core/resources/width_values_managers.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_app_bar_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_circle_percent_indictor_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_item_radio_quiz_screen.dart';
+import 'package:quiz_app/view/quiz/widgets/custom_list_view_options_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_question_title_quiz_screen.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -66,12 +67,9 @@ class _QuizScreenState extends State<QuizScreen> {
                 SizedBox(
                   height: HeightValuesManager.h70,
                 ),
-                ListView.separated(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                    itemBuilder: (context, index) =>  CustomItemRadioQuizScreen(),
-                    separatorBuilder: (context, index) => SizedBox(height: 25,),
-                    itemCount:  _quizScreenController.option.length)
+                CustomListViewOptionsQuizScreen(
+                  option:_quizScreenController.option ,
+                    itemCount: _quizScreenController.option.length)
 
               ],
             ),
