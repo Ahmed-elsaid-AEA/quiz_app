@@ -30,7 +30,11 @@ class _QuizScreenState extends State<QuizScreen> {
     super.initState();
     _quizScreenController = QuizScreenController();
   }
-
+@override
+  void dispose() {
+    _quizScreenController.onDispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     // String a = ModalRoute.of(context)!.settings.arguments as String;
@@ -68,6 +72,10 @@ class _QuizScreenState extends State<QuizScreen> {
                   height: HeightValuesManager.h70,
                 ),
                 CustomListViewOptionsQuizScreen(
+                  onTap: (indexValue) {
+                    _quizScreenController.onTapAtItemRadio(indexValue);
+                  },
+                  outputDataGroupValueRadio: _quizScreenController.outPutDataGroupValueIndex,
                   option:_quizScreenController.option ,
                     itemCount: _quizScreenController.option.length)
 
