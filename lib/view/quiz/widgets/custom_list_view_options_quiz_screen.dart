@@ -11,7 +11,7 @@ class CustomListViewOptionsQuizScreen extends StatelessWidget {
   });
 
   final int itemCount;
-  final List<String> option;
+  final List<dynamic> option;
   final Stream<int> outputDataGroupValueRadio;
 final void Function(int indexValue)onTap;
   @override

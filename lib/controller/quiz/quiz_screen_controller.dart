@@ -1,15 +1,12 @@
 import 'dart:async';
 
+import 'package:quiz_app/core/resources/const_values.dart';
+
 class QuizScreenController {
-  List<String> option = [
-    "afds",
-    "84",
-    "65",
-    "986523.0",
-    "dsdsdsd",
-    "sdds",
-  ];
+
+  int countQuestion = 0;
   int groupValueIndex = -1;
+  int questionNow=2;
   late StreamController<int> streamControllerGroupValueIndex;
   late Sink<int> inputDataGroupValueIndex;
   late Stream<int> outPutDataGroupValueIndex;
@@ -19,6 +16,7 @@ class QuizScreenController {
   late Stream<bool> isActiveOutputStream;
 
   QuizScreenController() {
+    countQuestion = ConstValue.questionList.length;
     streamControllerGroupValueIndex = StreamController();
     inputDataGroupValueIndex = streamControllerGroupValueIndex.sink;
     outPutDataGroupValueIndex =
@@ -26,7 +24,8 @@ class QuizScreenController {
     inputDataGroupValueIndex.add(groupValueIndex);
     streamControllerButtonStatus = StreamController();
     inputDataButtonStatus = streamControllerButtonStatus.sink;
-    isActiveOutputStream = streamControllerButtonStatus.stream.asBroadcastStream();
+    isActiveOutputStream =
+        streamControllerButtonStatus.stream.asBroadcastStream();
     inputDataButtonStatus.add(isNextActive);
   }
 

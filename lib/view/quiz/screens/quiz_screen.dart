@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quiz_app/controller/quiz/quiz_screen_controller.dart';
 import 'package:quiz_app/core/resources/color_manager.dart';
+import 'package:quiz_app/core/resources/const_values.dart';
 import 'package:quiz_app/core/resources/font_managers.dart';
 import 'package:quiz_app/core/resources/height_manger.dart';
 import 'package:quiz_app/core/resources/padding_values_manager.dart';
@@ -59,8 +60,9 @@ class _QuizScreenState extends State<QuizScreen> {
                   clipBehavior: Clip.none,
                   children: [
                     CustomQuestionTitleQuizScreen(
-                        text:
-                            "In what year did the United States host the FIFA World Cup for the first time?"),
+                        text: ConstValue
+                            .questionList[_quizScreenController.questionNow]
+                            .question),
                     const Positioned(
                       top: -29,
                       right: 0,
@@ -71,7 +73,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: HeightValuesManager.h70,
                 ),
                 CustomListViewOptionsQuizScreen(
@@ -80,8 +82,10 @@ class _QuizScreenState extends State<QuizScreen> {
                     },
                     outputDataGroupValueRadio:
                         _quizScreenController.outPutDataGroupValueIndex,
-                    option: _quizScreenController.option,
-                    itemCount: _quizScreenController.option.length)
+                    option:ConstValue
+                        .questionList[_quizScreenController.questionNow].listAnswers,
+                    itemCount: ConstValue
+                        .questionList[_quizScreenController.questionNow].listAnswers.length)
               ],
             ),
           ),
@@ -92,15 +96,15 @@ class _QuizScreenState extends State<QuizScreen> {
           onTap: () {
             Navigator.of(context).canPop();
           },
-          text: "7/0"),
+          text:
+              "${_quizScreenController.questionNow + 1}/${_quizScreenController.countQuestion}"),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(
             right: PaddingValuesManagers.p24,
             left: PaddingValuesManagers.p24,
-
             bottom: PaddingValuesManagers.p24),
         child: CustomStartButtonLoginScreen(
-          text: StringsValues.kNext,
+            text: StringsValues.kNext,
             onPressed: () {},
             isActiveOutputStream: _quizScreenController.isActiveOutputStream),
       ),
