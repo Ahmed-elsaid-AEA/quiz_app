@@ -28,7 +28,9 @@ class CustomItemRadioQuizScreen extends StatelessWidget {
             vertical: PaddingValuesManagers.p10),
         width: double.infinity,
         decoration: BoxDecoration(
-            color: ColorManager.kWhiteColor,
+            color: isSelected == true
+                ? ColorManager.kPrimaryColor.withOpacity(.2)
+                : ColorManager.kWhiteColor,
             borderRadius: BorderRadius.circular(20)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
