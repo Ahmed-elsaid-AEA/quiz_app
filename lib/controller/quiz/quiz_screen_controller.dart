@@ -16,6 +16,7 @@ class QuizScreenController {
   bool isNextActive = false;
   late Sink<bool> inputDataButtonStatus;
   late Stream<bool> isActiveOutputStream;
+  int timeSecondCounterNow = 0;
 
   QuizScreenController() {
     countQuestion = ConstValue.questionList.length;
@@ -30,9 +31,22 @@ class QuizScreenController {
         streamControllerButtonStatus.stream.asBroadcastStream();
     streamControllerTime = StreamController();
     inputDataTime = streamControllerTime.sink;
-    outPutStreamTime =
-        streamControllerTime.stream.asBroadcastStream();
+    outPutStreamTime = streamControllerTime.stream.asBroadcastStream();
+    inputDataTime.add(timeSecondCounterNow);
     inputDataButtonStatus.add(isNextActive);
+    makeCounter();
+  }
+
+  void makeCounter() {
+    for (int i = 0; i < 30; i++) {
+      Future.delayed(
+        Duration(seconds: i),
+        () {
+          timeSecondCounterNow = i;
+          inputDataTime.add(timeSecondCounterNow);
+        },
+      );
+    }
   }
 
   void onTapAtItemRadio(int index) {

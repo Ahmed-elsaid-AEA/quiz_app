@@ -70,7 +70,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       child: CustomCirclePercentIndicatorQuizScreen(
                         outPutStreamTime:
                             _quizScreenController.outPutStreamTime,
-                        text: '30',
+
                       ),
                     )
                   ],

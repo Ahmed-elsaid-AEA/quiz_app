@@ -7,11 +7,9 @@ import 'package:quiz_app/core/resources/font_managers.dart';
 class CustomCirclePercentIndicatorQuizScreen extends StatelessWidget {
   const CustomCirclePercentIndicatorQuizScreen({
     super.key,
-    required this.text,
+
     required this.outPutStreamTime,
   });
-
-  final String text;
   final Stream<int> outPutStreamTime;
 
   @override
