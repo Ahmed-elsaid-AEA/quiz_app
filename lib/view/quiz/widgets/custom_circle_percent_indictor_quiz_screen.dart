@@ -8,9 +8,11 @@ class CustomCirclePercentIndicatorQuizScreen extends StatelessWidget {
   const CustomCirclePercentIndicatorQuizScreen({
     super.key,
     required this.text,
+    required this.outPutStreamTime,
   });
 
   final String text;
+  final Stream<int> outPutStreamTime;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,13 @@ class CustomCirclePercentIndicatorQuizScreen extends StatelessWidget {
         circularStrokeCap: CircularStrokeCap.round,
         restartAnimation: true,
         percent: 1,
-        center: Text(
-          text,
-          style: GoogleFonts.baloo2(
-              fontWeight: FontWeight.w700, fontSize: FontSize.f32),
+        center: StreamBuilder(
+          stream: outPutStreamTime,
+          builder: (context, snapshot) => Text(
+            snapshot.data == null ? "0" : snapshot.data.toString(),
+            style: GoogleFonts.baloo2(
+                fontWeight: FontWeight.w700, fontSize: FontSize.f32),
+          ),
         ),
         backgroundColor: ColorManager.kPrimaryColor.withOpacity(.38),
         animationDuration: 30000,

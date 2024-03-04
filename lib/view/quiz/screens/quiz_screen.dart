@@ -53,7 +53,7 @@ class _QuizScreenState extends State<QuizScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: HeightValuesManager.h88,
                 ),
                 Stack(
@@ -63,11 +63,13 @@ class _QuizScreenState extends State<QuizScreen> {
                         text: ConstValue
                             .questionList[_quizScreenController.questionNow]
                             .question),
-                    const Positioned(
+                    Positioned(
                       top: -29,
                       right: 0,
                       left: 0,
                       child: CustomCirclePercentIndicatorQuizScreen(
+                        outPutStreamTime:
+                            _quizScreenController.outPutStreamTime,
                         text: '30',
                       ),
                     )
@@ -82,10 +84,13 @@ class _QuizScreenState extends State<QuizScreen> {
                     },
                     outputDataGroupValueRadio:
                         _quizScreenController.outPutDataGroupValueIndex,
-                    option:ConstValue
-                        .questionList[_quizScreenController.questionNow].listAnswers,
+                    option: ConstValue
+                        .questionList[_quizScreenController.questionNow]
+                        .listAnswers,
                     itemCount: ConstValue
-                        .questionList[_quizScreenController.questionNow].listAnswers.length)
+                        .questionList[_quizScreenController.questionNow]
+                        .listAnswers
+                        .length)
               ],
             ),
           ),

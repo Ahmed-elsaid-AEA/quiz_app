@@ -3,13 +3,15 @@ import 'dart:async';
 import 'package:quiz_app/core/resources/const_values.dart';
 
 class QuizScreenController {
-
   int countQuestion = 0;
   int groupValueIndex = -1;
-  int questionNow=2;
+  int questionNow = 2;
   late StreamController<int> streamControllerGroupValueIndex;
   late Sink<int> inputDataGroupValueIndex;
   late Stream<int> outPutDataGroupValueIndex;
+  late StreamController<int> streamControllerTime;
+  late Sink<int> inputDataTime;
+  late Stream<int> outPutStreamTime;
   late StreamController<bool> streamControllerButtonStatus;
   bool isNextActive = false;
   late Sink<bool> inputDataButtonStatus;
@@ -26,6 +28,10 @@ class QuizScreenController {
     inputDataButtonStatus = streamControllerButtonStatus.sink;
     isActiveOutputStream =
         streamControllerButtonStatus.stream.asBroadcastStream();
+    streamControllerTime = StreamController();
+    inputDataTime = streamControllerTime.sink;
+    outPutStreamTime =
+        streamControllerTime.stream.asBroadcastStream();
     inputDataButtonStatus.add(isNextActive);
   }
 
@@ -44,5 +50,9 @@ class QuizScreenController {
   onDispose() {
     inputDataGroupValueIndex.close();
     streamControllerGroupValueIndex.close();
+    inputDataTime.close();
+    streamControllerTime.close();
+    inputDataButtonStatus.close();
+    streamControllerButtonStatus.close();
   }
 }
