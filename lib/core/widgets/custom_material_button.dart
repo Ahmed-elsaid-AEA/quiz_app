@@ -14,12 +14,12 @@ class CustomStartButtonLoginScreen extends StatelessWidget {
   const CustomStartButtonLoginScreen({
     super.key,
     required this.onPressed,
-    required this.isActiveOutputStream,
+    required this.isActiveOutputStream, required this.text,
   });
 
   final VoidCallback onPressed;
   final Stream<bool> isActiveOutputStream;
-
+final String text;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -44,7 +44,7 @@ class CustomStartButtonLoginScreen extends StatelessWidget {
                       : ColorManager.kGreyColor,
               borderRadius: const BorderRadius.all(Radius.circular(20))),
           child: Text(
-            StringsValues.kStart,
+            text,
             style: GoogleFonts.baloo2(
               color: ColorManager.kWhiteColor,
               fontSize: FontSize.f24,

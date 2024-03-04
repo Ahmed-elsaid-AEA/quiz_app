@@ -11,4 +11,17 @@ class ConstValue {
     OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage3,
         StringsValues.kOnBoardingTitle3, StringsValues.kOnBoardingDesc3),
   ];
+  // static List<OnBoardingScreenModel> onBoardingListConst = [
+  //   OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage1,
+  //       StringsValues.kOnBoardingTitle1, StringsValues.kOnBoardingDesc1),
+  //   OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage2,
+  //       StringsValues.kOnBoardingTitle2, StringsValues.kOnBoardingDesc2),
+  //   OnBoardingScreenModel(AssetsValuesManager.kOnBoardgingImage3,
+  //       StringsValues.kOnBoardingTitle3, StringsValues.kOnBoardingDesc3),
+  // ];
 }
+// 1 - what is ................. ( i b c d ) - 1 correct
+// 2 - what is ................. ( i b c d 5 ) - 2 correct
+/*
+* [ (StringQuestion ,  []listAnswer , StringCorrectAnswer )
+* */

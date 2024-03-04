@@ -76,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               CustomStartButtonLoginScreen(
+                text: StringsValues.kStart,
                 isActiveOutputStream:
                     _loginScreenController.isActiveOutputStream,
                 onPressed: () {
