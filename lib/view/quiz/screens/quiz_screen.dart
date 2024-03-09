@@ -60,7 +60,8 @@ class _QuizScreenState extends State<QuizScreen> {
                   clipBehavior: Clip.none,
                   children: [
                     CustomQuestionTitleQuizScreen(
-                        outPutStreamQuestionTitle: _quizScreenController.outPutStreamQuestionTitle),
+                        outPutStreamQuestionTitle:
+                            _quizScreenController.outPutStreamQuestion),
                     Positioned(
                       top: -29,
                       right: 0,
@@ -68,7 +69,6 @@ class _QuizScreenState extends State<QuizScreen> {
                       child: CustomCirclePercentIndicatorQuizScreen(
                         outPutStreamTime:
                             _quizScreenController.outPutStreamTime,
-
                       ),
                     )
                   ],
@@ -76,19 +76,23 @@ class _QuizScreenState extends State<QuizScreen> {
                 const SizedBox(
                   height: HeightValuesManager.h70,
                 ),
-                CustomListViewOptionsQuizScreen(
-                    onTap: (indexValue) {
-                      _quizScreenController.onTapAtItemRadio(indexValue);
-                    },
-                    outputDataGroupValueRadio:
-                        _quizScreenController.outPutDataGroupValueIndex,
-                    option: ConstValue
-                        .questionList[_quizScreenController.questionNow]
-                        .listAnswers,
-                    itemCount: ConstValue
-                        .questionList[_quizScreenController.questionNow]
-                        .listAnswers
-                        .length)
+                StreamBuilder(
+                  stream: _quizScreenController.outPutStreamQuestion,
+                  builder: (context, snapshot) =>
+                      CustomListViewOptionsQuizScreen(
+                          onTap: (indexValue) {
+                            _quizScreenController.onTapAtItemRadio(indexValue);
+                          },
+                          outputDataGroupValueRadio:
+                              _quizScreenController.outPutDataGroupValueIndex,
+                          option: ConstValue
+                              .questionList[snapshot.data==null?0:snapshot.data!]
+                              .listAnswers,
+                          itemCount: ConstValue
+                              .questionList[snapshot.data==null?0:snapshot.data!]
+                              .listAnswers
+                              .length),
+                )
               ],
             ),
           ),
