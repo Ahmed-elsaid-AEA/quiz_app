@@ -15,11 +15,15 @@ class QuizScreenController {
   late StreamController<bool> streamControllerButtonStatus;
   late Sink<int> inputDataQuestion;
   late Stream<int> outPutStreamQuestion;
+  late StreamController<bool> streamControllerAnimationStatus;
+  late Sink<bool> inputPutAnimationStatus;
+  late Stream<bool> outPutAnimationStatus;
   late StreamController<int> streamControllerQuestion;
   bool isNextActive = false;
   late Sink<bool> inputDataButtonStatus;
   late Stream<bool> isActiveOutputStream;
   int timeSecondCounterNow = 0;
+  bool animationStatus = true;
 
   QuizScreenController() {
     countQuestion = ConstValue.questionList.length;
@@ -38,10 +42,16 @@ class QuizScreenController {
     //
     streamControllerQuestion = StreamController();
     inputDataQuestion = streamControllerQuestion.sink;
-    outPutStreamQuestion = streamControllerQuestion.stream.asBroadcastStream();
+    outPutStreamQuestion =
+        streamControllerQuestion.stream.asBroadcastStream(); //
+    streamControllerAnimationStatus = StreamController();
+    inputPutAnimationStatus = streamControllerAnimationStatus.sink;
+    outPutAnimationStatus =
+        streamControllerAnimationStatus.stream.asBroadcastStream();
     inputDataQuestion.add(questionNow);
     inputDataTime.add(timeSecondCounterNow);
     inputDataButtonStatus.add(isNextActive);
+    inputPutAnimationStatus.add(animationStatus);
     makeCounter();
   }
 
@@ -62,6 +72,8 @@ class QuizScreenController {
 
   void nextQuestion() {
     if (questionNow >= ConstValue.questionList.length - 1) {
+      animationStatus=false;
+      inputPutAnimationStatus.add(animationStatus);
       print("can't increment");
     } else {
       questionNow++;
@@ -92,5 +104,7 @@ class QuizScreenController {
     streamControllerButtonStatus.close();
     inputDataQuestion.close();
     streamControllerQuestion.close();
+    inputPutAnimationStatus.close();
+    streamControllerAnimationStatus.close();
   }
 }
