@@ -13,6 +13,9 @@ class QuizScreenController {
   late Sink<int> inputDataTime;
   late Stream<int> outPutStreamTime;
   late StreamController<bool> streamControllerButtonStatus;
+  late Sink<int> inputDataQuestionTitle;
+  late Stream<int> outPutStreamQuestionTitle;
+  late StreamController<int> streamControllerQuestionTitle;
   bool isNextActive = false;
   late Sink<bool> inputDataButtonStatus;
   late Stream<bool> isActiveOutputStream;
@@ -32,6 +35,11 @@ class QuizScreenController {
     streamControllerTime = StreamController();
     inputDataTime = streamControllerTime.sink;
     outPutStreamTime = streamControllerTime.stream.asBroadcastStream();
+    //
+    streamControllerQuestionTitle = StreamController();
+    inputDataQuestionTitle = streamControllerQuestionTitle.sink;
+    outPutStreamQuestionTitle = streamControllerQuestionTitle.stream.asBroadcastStream();
+    inputDataQuestionTitle.add(questionNow);
     inputDataTime.add(timeSecondCounterNow);
     inputDataButtonStatus.add(isNextActive);
     makeCounter();
@@ -63,6 +71,7 @@ class QuizScreenController {
     makeCounter();
 
   }
+  inputDataQuestionTitle.add(questionNow);
 
 
   }
