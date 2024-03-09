@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.0.9
   dots_indicator: ^3.0.0
   percent_indicator: ^4.2.3
+  multiple_stream_builder: ^3.0.2
 
 dev_dependencies:
   flutter_test:

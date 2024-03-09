@@ -52,7 +52,7 @@ class QuizScreenController {
         () {
           timeSecondCounterNow = i;
           inputDataTime.add(timeSecondCounterNow);
-          if(i==30) {
+          if (i == 30) {
             nextQuestion();
           }
         },
@@ -60,21 +60,17 @@ class QuizScreenController {
     }
   }
 
-  void nextQuestion()
-  {
-  if(questionNow>=ConstValue.questionList.length-1){
-    print("can't increment");
+  void nextQuestion() {
+    if (questionNow >= ConstValue.questionList.length - 1) {
+      print("can't increment");
+    } else {
+      questionNow++;
+      print(" increment");
+      makeCounter();
+    }
+    inputDataQuestion.add(questionNow);
   }
-  else {
-    questionNow++;
-    print(" increment");
-    makeCounter();
 
-  }
-  inputDataQuestion.add(questionNow);
-
-
-  }
   void onTapAtItemRadio(int index) {
     groupValueIndex = index;
     inputDataGroupValueIndex.add(groupValueIndex);
@@ -94,5 +90,7 @@ class QuizScreenController {
     streamControllerTime.close();
     inputDataButtonStatus.close();
     streamControllerButtonStatus.close();
+    inputDataQuestion.close();
+    streamControllerQuestion.close();
   }
 }

@@ -82,13 +82,6 @@ class _QuizScreenState extends State<QuizScreen> {
                   },
                   outputDataGroupValueRadio:
                       _quizScreenController.outPutDataGroupValueIndex,
-                  // option: ConstValue
-                  //     .questionList[snapshot.data == null ? 0 : snapshot.data!]
-                  //     .listAnswers,
-                  // itemCount: ConstValue
-                  //     .questionList[snapshot.data == null ? 0 : snapshot.data!]
-                  //     .listAnswers
-                  //     .length,
                   outPutStreamQuestion:
                       _quizScreenController.outPutStreamQuestion,
                 )
