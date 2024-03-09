@@ -5,7 +5,7 @@ import 'package:quiz_app/core/resources/const_values.dart';
 class QuizScreenController {
   int countQuestion = 0;
   int groupValueIndex = -1;
-  int questionNow = 2;
+  int questionNow = 0;
   late StreamController<int> streamControllerGroupValueIndex;
   late Sink<int> inputDataGroupValueIndex;
   late Stream<int> outPutDataGroupValueIndex;
@@ -38,17 +38,34 @@ class QuizScreenController {
   }
 
   void makeCounter() {
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 31; i++) {
       Future.delayed(
         Duration(seconds: i),
         () {
           timeSecondCounterNow = i;
           inputDataTime.add(timeSecondCounterNow);
+          if(i==30) {
+            nextQuestion();
+          }
         },
       );
     }
   }
 
+  void nextQuestion()
+  {
+  if(questionNow>=ConstValue.questionList.length-1){
+    print("can't increment");
+  }
+  else {
+    questionNow++;
+    print(" increment");
+    makeCounter();
+
+  }
+
+
+  }
   void onTapAtItemRadio(int index) {
     groupValueIndex = index;
     inputDataGroupValueIndex.add(groupValueIndex);
