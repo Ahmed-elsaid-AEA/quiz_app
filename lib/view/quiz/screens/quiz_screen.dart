@@ -76,22 +76,21 @@ class _QuizScreenState extends State<QuizScreen> {
                 const SizedBox(
                   height: HeightValuesManager.h70,
                 ),
-                StreamBuilder(
-                  stream: _quizScreenController.outPutStreamQuestion,
-                  builder: (context, snapshot) =>
-                      CustomListViewOptionsQuizScreen(
-                          onTap: (indexValue) {
-                            _quizScreenController.onTapAtItemRadio(indexValue);
-                          },
-                          outputDataGroupValueRadio:
-                              _quizScreenController.outPutDataGroupValueIndex,
-                          option: ConstValue
-                              .questionList[snapshot.data==null?0:snapshot.data!]
-                              .listAnswers,
-                          itemCount: ConstValue
-                              .questionList[snapshot.data==null?0:snapshot.data!]
-                              .listAnswers
-                              .length),
+                CustomListViewOptionsQuizScreen(
+                  onTap: (indexValue) {
+                    _quizScreenController.onTapAtItemRadio(indexValue);
+                  },
+                  outputDataGroupValueRadio:
+                      _quizScreenController.outPutDataGroupValueIndex,
+                  // option: ConstValue
+                  //     .questionList[snapshot.data == null ? 0 : snapshot.data!]
+                  //     .listAnswers,
+                  // itemCount: ConstValue
+                  //     .questionList[snapshot.data == null ? 0 : snapshot.data!]
+                  //     .listAnswers
+                  //     .length,
+                  outPutStreamQuestion:
+                      _quizScreenController.outPutStreamQuestion,
                 )
               ],
             ),
