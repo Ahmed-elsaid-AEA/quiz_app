@@ -24,6 +24,7 @@ class QuizScreenController {
   late Stream<bool> isActiveOutputStream;
   int timeSecondCounterNow = 0;
   bool animationStatus = true;
+  List<int> listCorrectAnswer = [];
 
   QuizScreenController() {
     countQuestion = ConstValue.questionList.length;
@@ -71,8 +72,17 @@ class QuizScreenController {
   }
 
   void nextQuestion() {
+    // check if you add answer
+    if (questionNow == listCorrectAnswer.length) {
+      listCorrectAnswer.add(groupValueIndex);
+    } else {
+      listCorrectAnswer[questionNow] = groupValueIndex;
+    }
+    // update in ui
+    groupValueIndex = -1;
+    inputDataGroupValueIndex.add(groupValueIndex);
     if (questionNow >= ConstValue.questionList.length - 1) {
-      animationStatus=false;
+      animationStatus = false;
       inputPutAnimationStatus.add(animationStatus);
       print("can't increment");
     } else {
@@ -85,6 +95,15 @@ class QuizScreenController {
 
   void onTapAtItemRadio(int index) {
     groupValueIndex = index;
+    // check if you add answer
+    if (questionNow == listCorrectAnswer.length) {
+      listCorrectAnswer.add(groupValueIndex);
+    } else {
+      listCorrectAnswer[questionNow] = groupValueIndex;
+    }
+    for (int i in listCorrectAnswer) {
+      print(i);
+    }
     inputDataGroupValueIndex.add(groupValueIndex);
     if (groupValueIndex != -1) {
       isNextActive = true;
