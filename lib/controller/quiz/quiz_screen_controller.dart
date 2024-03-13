@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/resources/const_values.dart';
+import 'package:quiz_app/core/resources/routes_manager.dart';
 
 class QuizScreenController {
   int countQuestion = 0;
@@ -28,17 +29,19 @@ class QuizScreenController {
   late Sink<bool> inputDataButtonStatus;
   late Stream<bool> isActiveOutputStream;
   int timeSecondCounterNow = 0;
-  bool animationStatus = true;
   List<int> listCorrectAnswer = [];
   late AnimationController animationController;
   double animationProgressPercent = 0.0;
   Tween<double> tween = Tween(begin: 0.0, end: 1.0);
+  late BuildContext _context;
 
-  QuizScreenController(SingleTickerProviderStateMixin vsync) {
+  QuizScreenController(
+      SingleTickerProviderStateMixin vsync, BuildContext context) {
+    _context = context;
     animationController = AnimationController(
       vsync: vsync,
       duration: const Duration(
-        seconds: 31,
+        seconds: 1,
       ),
     );
     countQuestion = ConstValue.questionList.length;
@@ -80,6 +83,7 @@ class QuizScreenController {
       inputPutAnimationProgress.add(animationProgressPercent);
     });
   }
+
   // 0    1
   // 1    2
   // 2    3
@@ -100,6 +104,10 @@ class QuizScreenController {
     inputDataTime.add((animationProgressPercent * 31).toInt());
   }
 
+  void goToAnswerScreen() {
+    Navigator.pushReplacementNamed(_context, RoutesName.kAnswerScreen);
+  }
+
   void nextQuestion() {
     // check if you add answer
     if (questionNow == listCorrectAnswer.length) {
@@ -111,12 +119,10 @@ class QuizScreenController {
     groupValueIndex = -1;
     inputDataGroupValueIndex.add(groupValueIndex);
     if (questionNow >= ConstValue.questionList.length - 1) {
-      animationStatus = false;
-      inputPutAnimationProgress.add(animationProgressPercent);
-      print("can't increment");
+      // inputPutAnimationProgress.add(animationProgressPercent);
+      goToAnswerScreen();
     } else {
       questionNow++;
-      print(" increment");
       makeCounter();
     }
     inputDataQuestion.add(questionNow);
@@ -130,9 +136,7 @@ class QuizScreenController {
     } else {
       listCorrectAnswer[questionNow] = groupValueIndex;
     }
-    for (int i in listCorrectAnswer) {
-      print(i);
-    }
+
     inputDataGroupValueIndex.add(groupValueIndex);
     if (groupValueIndex != -1) {
       isNextActive = true;

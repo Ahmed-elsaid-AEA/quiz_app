@@ -31,7 +31,7 @@ class _QuizScreenState extends State<QuizScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _quizScreenController = QuizScreenController(this);
+    _quizScreenController = QuizScreenController(this,context);
     _quizScreenController.forwardAnimation();
     _quizScreenController.restartAnimation();
   }
