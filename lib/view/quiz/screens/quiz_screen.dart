@@ -44,8 +44,8 @@ class _QuizScreenState extends State<QuizScreen>
 
   @override
   Widget build(BuildContext context) {
-    // String a = ModalRoute.of(context)!.settings.arguments as String;
-    // print(a);
+    String name = ModalRoute.of(context)!.settings.arguments as String;
+    _quizScreenController.addName(name);
     return Scaffold(
       appBar: CustomAppBarQuizScreen(
         textQuestionStream:_quizScreenController.outPutQuestionNow,

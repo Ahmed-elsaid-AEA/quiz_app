@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/resources/const_values.dart';
 import 'package:quiz_app/core/resources/routes_manager.dart';
+import 'package:quiz_app/core/resources/strings_values.dart';
 
 class QuizScreenController {
   int countQuestion = 0;
@@ -39,6 +40,7 @@ class QuizScreenController {
   double animationProgressPercent = 0.0;
   Tween<double> tween = Tween(begin: 0.0, end: 1.0);
   late BuildContext _context;
+  String _name = "";
 
   QuizScreenController(
       SingleTickerProviderStateMixin vsync, BuildContext context) {
@@ -46,7 +48,7 @@ class QuizScreenController {
     animationController = AnimationController(
       vsync: vsync,
       duration: const Duration(
-        seconds: 5,
+        seconds: 1,
       ),
     );
     countQuestion = ConstValue.questionList.length;
@@ -109,14 +111,26 @@ class QuizScreenController {
     });
   }
 
+  // -=========================================== make counter ===================
+
   void makeCounter() {
     forwardAnimation();
     inputDataTime.add((animationProgressPercent * 31).toInt());
   }
 
+  // -=========================================== goToAnswerScreen ===================
+
   void goToAnswerScreen() {
     Navigator.pushReplacementNamed(_context, RoutesName.kAnswerScreen,
-        arguments: listCorrectAnswer);
+        arguments: {
+          StringsValues.kName: _name,
+          StringsValues.kListCorrectAnswer: listCorrectAnswer,
+        });
+  }
+
+//  // -=========================================== add name ===================
+  void addName(String name) {
+    _name = name;
   }
 
   void nextQuestion() {

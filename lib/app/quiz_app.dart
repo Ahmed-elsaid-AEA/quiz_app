@@ -12,7 +12,7 @@ class QuizApp extends StatelessWidget {
       routes: RoutesManager.routes,
       theme: ThemeData(fontFamily: FontsName.kFontMontserrat),
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutesName.kQuizScreen,
+      initialRoute: RoutesName.kSplashScreen,
     );
   }
 }

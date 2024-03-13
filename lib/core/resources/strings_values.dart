@@ -12,5 +12,7 @@ static const String kOnBoardingDesc2=   "Sunt in culpa qui officia deserunt moll
 static const String kOnBoardingDesc3=   "Culpa qui officia deserunt mollit anim id est laborum.";
 static const String kEnterYourName=   "Enter your name";
 static const String kPrevious=   "Previous";
+static const String kName=   "kName";
+static const String kListCorrectAnswer=   "kListCorrectAnswer";
 
 }
