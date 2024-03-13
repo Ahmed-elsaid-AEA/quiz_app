@@ -9,18 +9,18 @@ class CustomAppBarQuizScreen extends StatelessWidget
   const CustomAppBarQuizScreen({
     super.key,
     required this.onTap,
-    required this.text,
+    required this.textQuestionStream,
   });
 
   final GestureTapCallback onTap;
-  final String text;
+  final Stream<String> textQuestionStream;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       leadingWidth: 140,
       leading: InkWell(
-        onTap:onTap,
+        onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.only(left: 24),
           child: Row(
@@ -41,10 +41,13 @@ class CustomAppBarQuizScreen extends StatelessWidget
           ),
         ),
       ),
-      title: Text(
-        text,
-        style: GoogleFonts.baloo2(
-            fontSize: FontSize.f18, fontWeight: FontWeight.bold),
+      title: StreamBuilder(
+        stream: textQuestionStream,
+        builder: (context, snapshot) => Text(
+          snapshot.data == null ? "" : snapshot.data!,
+          style: GoogleFonts.baloo2(
+              fontSize: FontSize.f18, fontWeight: FontWeight.bold),
+        ),
       ),
       centerTitle: true,
       backgroundColor: ColorManager.kLightWhite,

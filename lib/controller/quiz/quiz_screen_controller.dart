@@ -23,6 +23,11 @@ class QuizScreenController {
   late Sink<double> inputPutAnimationProgress;
   late Stream<double> outPutAnimationProgress;
 
+  ////////////
+  late StreamController<String> streamControllerQuestionsNow;
+  late Sink<String> inputPutQuestionNow;
+  late Stream<String> outPutQuestionNow;
+
   ////
   late StreamController<int> streamControllerQuestion;
   bool isNextActive = false;
@@ -41,7 +46,7 @@ class QuizScreenController {
     animationController = AnimationController(
       vsync: vsync,
       duration: const Duration(
-        seconds: 1,
+        seconds: 5,
       ),
     );
     countQuestion = ConstValue.questionList.length;
@@ -58,6 +63,10 @@ class QuizScreenController {
     inputDataTime = streamControllerTime.sink;
     outPutStreamTime = streamControllerTime.stream.asBroadcastStream();
     //
+    streamControllerQuestionsNow = StreamController();
+    inputPutQuestionNow = streamControllerQuestionsNow.sink;
+    outPutQuestionNow = streamControllerQuestionsNow.stream.asBroadcastStream();
+    //
     streamControllerQuestion = StreamController();
     inputDataQuestion = streamControllerQuestion.sink;
     outPutStreamQuestion =
@@ -71,6 +80,7 @@ class QuizScreenController {
     inputDataButtonStatus.add(isNextActive);
     inputPutAnimationProgress.add(animationProgressPercent);
     makeCounter();
+    inputPutQuestionNow.add("${questionNow + 1}/$countQuestion");
   }
 
   // -=========================================== forward animation ===================
@@ -105,7 +115,8 @@ class QuizScreenController {
   }
 
   void goToAnswerScreen() {
-    Navigator.pushReplacementNamed(_context, RoutesName.kAnswerScreen);
+    Navigator.pushReplacementNamed(_context, RoutesName.kAnswerScreen,
+        arguments: listCorrectAnswer);
   }
 
   void nextQuestion() {
@@ -120,12 +131,14 @@ class QuizScreenController {
     inputDataGroupValueIndex.add(groupValueIndex);
     if (questionNow >= ConstValue.questionList.length - 1) {
       // inputPutAnimationProgress.add(animationProgressPercent);
+
       goToAnswerScreen();
     } else {
       questionNow++;
       makeCounter();
     }
     inputDataQuestion.add(questionNow);
+    inputPutQuestionNow.add("${questionNow + 1}/$countQuestion");
   }
 
   void onTapAtItemRadio(int index) {
@@ -158,5 +171,7 @@ class QuizScreenController {
     streamControllerQuestion.close();
     inputPutAnimationProgress.close();
     streamControllerAnimationProgress.close();
+    inputPutQuestionNow.close();
+    streamControllerQuestionsNow.close();
   }
 }

@@ -31,7 +31,7 @@ class _QuizScreenState extends State<QuizScreen>
   void initState() {
     // TODO: implement initState
     super.initState();
-    _quizScreenController = QuizScreenController(this,context);
+    _quizScreenController = QuizScreenController(this, context);
     _quizScreenController.forwardAnimation();
     _quizScreenController.restartAnimation();
   }
@@ -47,9 +47,15 @@ class _QuizScreenState extends State<QuizScreen>
     // String a = ModalRoute.of(context)!.settings.arguments as String;
     // print(a);
     return Scaffold(
+      appBar: CustomAppBarQuizScreen(
+        textQuestionStream:_quizScreenController.outPutQuestionNow,
+        onTap: () {
+          Navigator.of(context).canPop();
+        },
+      ),
       body: Padding(
         padding:
-            const EdgeInsets.symmetric(horizontal: PaddingValuesManagers.p24),
+        const EdgeInsets.symmetric(horizontal: PaddingValuesManagers.p24),
         child: Container(
           width: double.infinity,
           child: SingleChildScrollView(
@@ -64,16 +70,16 @@ class _QuizScreenState extends State<QuizScreen>
                   children: [
                     CustomQuestionTitleQuizScreen(
                         outPutStreamQuestionTitle:
-                            _quizScreenController.outPutStreamQuestion),
+                        _quizScreenController.outPutStreamQuestion),
                     Positioned(
                       top: -29,
                       right: 0,
                       left: 0,
                       child: CustomCirclePercentIndicatorQuizScreen(
                         outPutStreamTime:
-                            _quizScreenController.outPutStreamTime,
+                        _quizScreenController.outPutStreamTime,
                         outPutAnimationProgress:
-                            _quizScreenController.outPutAnimationProgress,
+                        _quizScreenController.outPutAnimationProgress,
                       ),
                     )
                   ],
@@ -86,9 +92,9 @@ class _QuizScreenState extends State<QuizScreen>
                     _quizScreenController.onTapAtItemRadio(indexValue);
                   },
                   outputDataGroupValueRadio:
-                      _quizScreenController.outPutDataGroupValueIndex,
+                  _quizScreenController.outPutDataGroupValueIndex,
                   outPutStreamQuestion:
-                      _quizScreenController.outPutStreamQuestion,
+                  _quizScreenController.outPutStreamQuestion,
                 )
               ],
             ),
@@ -96,12 +102,7 @@ class _QuizScreenState extends State<QuizScreen>
         ),
       ),
       backgroundColor: ColorManager.kLightWhite,
-      appBar: CustomAppBarQuizScreen(
-          onTap: () {
-            Navigator.of(context).canPop();
-          },
-          text:
-              "${_quizScreenController.questionNow + 1}/${_quizScreenController.countQuestion}"),
+
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(
             right: PaddingValuesManagers.p24,
