@@ -38,7 +38,7 @@ class QuizScreenController {
     animationController = AnimationController(
       vsync: vsync,
       duration: const Duration(
-        seconds: 30,
+        seconds: 31,
       ),
     );
     countQuestion = ConstValue.questionList.length;
@@ -72,16 +72,32 @@ class QuizScreenController {
 
   // -=========================================== forward animation ===================
   void forwardAnimation() {
+    animationController.reset();
     animationController.forward();
     animationController.addListener(() {
       animationProgressPercent = tween.evaluate(animationController);
-      inputDataTime.add((animationProgressPercent * 30).toInt());
+      inputDataTime.add((animationProgressPercent * 31).toInt());
       inputPutAnimationProgress.add(animationProgressPercent);
+    });
+  }
+  // 0    1
+  // 1    2
+  // 2    3
+  // 3    4
+  // 4    5
+
+  // -=========================================== restart animation ===================
+  void restartAnimation() {
+    animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        nextQuestion();
+      }
     });
   }
 
   void makeCounter() {
-    inputDataTime.add((animationProgressPercent * 30).toInt());
+    forwardAnimation();
+    inputDataTime.add((animationProgressPercent * 31).toInt());
   }
 
   void nextQuestion() {
