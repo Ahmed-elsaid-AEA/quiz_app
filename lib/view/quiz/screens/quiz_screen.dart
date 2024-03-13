@@ -106,7 +106,9 @@ class _QuizScreenState extends State<QuizScreen> {
             bottom: PaddingValuesManagers.p24),
         child: CustomStartButtonLoginScreen(
             text: StringsValues.kNext,
-            onPressed: () {},
+            onPressed: () {
+              _quizScreenController.nextQuestion();
+            },
             isActiveOutputStream: _quizScreenController.isActiveOutputStream),
       ),
     );
