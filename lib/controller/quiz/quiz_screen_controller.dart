@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:quiz_app/core/resources/const_values.dart';
 
 class QuizScreenController {
@@ -15,9 +16,13 @@ class QuizScreenController {
   late StreamController<bool> streamControllerButtonStatus;
   late Sink<int> inputDataQuestion;
   late Stream<int> outPutStreamQuestion;
-  late StreamController<bool> streamControllerAnimationStatus;
-  late Sink<bool> inputPutAnimationStatus;
-  late Stream<bool> outPutAnimationStatus;
+
+  ////
+  late StreamController<double> streamControllerAnimationProgress;
+  late Sink<double> inputPutAnimationProgress;
+  late Stream<double> outPutAnimationProgress;
+
+  ////
   late StreamController<int> streamControllerQuestion;
   bool isNextActive = false;
   late Sink<bool> inputDataButtonStatus;
@@ -25,8 +30,17 @@ class QuizScreenController {
   int timeSecondCounterNow = 0;
   bool animationStatus = true;
   List<int> listCorrectAnswer = [];
+  late AnimationController animationController;
+  double animationProgressPercent = 0.0;
+  Tween<double> tween = Tween(begin: 0.0, end: 1.0);
 
-  QuizScreenController() {
+  QuizScreenController(SingleTickerProviderStateMixin vsync) {
+    animationController = AnimationController(
+      vsync: vsync,
+      duration: const Duration(
+        seconds: 30,
+      ),
+    );
     countQuestion = ConstValue.questionList.length;
     streamControllerGroupValueIndex = StreamController();
     inputDataGroupValueIndex = streamControllerGroupValueIndex.sink;
@@ -45,30 +59,29 @@ class QuizScreenController {
     inputDataQuestion = streamControllerQuestion.sink;
     outPutStreamQuestion =
         streamControllerQuestion.stream.asBroadcastStream(); //
-    streamControllerAnimationStatus = StreamController();
-    inputPutAnimationStatus = streamControllerAnimationStatus.sink;
-    outPutAnimationStatus =
-        streamControllerAnimationStatus.stream.asBroadcastStream();
+    streamControllerAnimationProgress = StreamController();
+    inputPutAnimationProgress = streamControllerAnimationProgress.sink;
+    outPutAnimationProgress =
+        streamControllerAnimationProgress.stream.asBroadcastStream();
     inputDataQuestion.add(questionNow);
     inputDataTime.add(timeSecondCounterNow);
     inputDataButtonStatus.add(isNextActive);
-    inputPutAnimationStatus.add(animationStatus);
+    inputPutAnimationProgress.add(animationProgressPercent);
     makeCounter();
   }
 
+  // -=========================================== forward animation ===================
+  void forwardAnimation() {
+    animationController.forward();
+    animationController.addListener(() {
+      animationProgressPercent = tween.evaluate(animationController);
+      inputDataTime.add((animationProgressPercent * 30).toInt());
+      inputPutAnimationProgress.add(animationProgressPercent);
+    });
+  }
+
   void makeCounter() {
-    for (int i = 0; i < 31; i++) {
-      Future.delayed(
-        Duration(seconds: i),
-        () {
-          timeSecondCounterNow = i;
-          inputDataTime.add(timeSecondCounterNow);
-          if (i == 30) {
-            nextQuestion();
-          }
-        },
-      );
-    }
+    inputDataTime.add((animationProgressPercent * 30).toInt());
   }
 
   void nextQuestion() {
@@ -83,7 +96,7 @@ class QuizScreenController {
     inputDataGroupValueIndex.add(groupValueIndex);
     if (questionNow >= ConstValue.questionList.length - 1) {
       animationStatus = false;
-      inputPutAnimationStatus.add(animationStatus);
+      inputPutAnimationProgress.add(animationProgressPercent);
       print("can't increment");
     } else {
       questionNow++;
@@ -123,7 +136,7 @@ class QuizScreenController {
     streamControllerButtonStatus.close();
     inputDataQuestion.close();
     streamControllerQuestion.close();
-    inputPutAnimationStatus.close();
-    streamControllerAnimationStatus.close();
+    inputPutAnimationProgress.close();
+    streamControllerAnimationProgress.close();
   }
 }

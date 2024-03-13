@@ -5,45 +5,15 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quiz_app/core/resources/color_manager.dart';
 import 'package:quiz_app/core/resources/font_managers.dart';
 
-class CustomCirclePercentIndicatorQuizScreen extends StatefulWidget {
+class CustomCirclePercentIndicatorQuizScreen extends StatelessWidget {
   const CustomCirclePercentIndicatorQuizScreen({
     super.key,
     required this.outPutStreamTime,
-    required this.outPutAnimationStatus,
+    required this.outPutAnimationProgress,
   });
 
-  final Stream<bool> outPutAnimationStatus;
+  final Stream<double> outPutAnimationProgress;
   final Stream<int> outPutStreamTime;
-
-  @override
-  State<CustomCirclePercentIndicatorQuizScreen> createState() =>
-      _CustomCirclePercentIndicatorQuizScreenState();
-}
-
-class _CustomCirclePercentIndicatorQuizScreenState
-    extends State<CustomCirclePercentIndicatorQuizScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController animationController;
-  double progress = 0.0;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    animationController = AnimationController(
-      vsync: this,
-      duration: Duration(
-        seconds: 30,
-      ),
-    );
-    animationController.forward();
-
-    Tween<double> tween = Tween(begin: 0.0, end: 1.0);
-    animationController.addListener(() {
-      progress = tween.evaluate(animationController);
-      print(progress);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +21,14 @@ class _CustomCirclePercentIndicatorQuizScreenState
       radius: 43,
       backgroundColor: Colors.white,
       child: StreamBuilder2(
-        streams:
-            StreamTuple2(widget.outPutAnimationStatus, widget.outPutStreamTime),
+        streams: StreamTuple2(
+            outPutAnimationProgress, outPutStreamTime),
         builder: (context, snapshots) => CircularPercentIndicator(
           radius: 43,
-          // animation: snapshots.snapshot1.data == null
-          //     ? true
-          //     : snapshots.snapshot1.data!,
           circularStrokeCap: CircularStrokeCap.round,
           restartAnimation: true,
-          percent: progress,
+          percent:
+              snapshots.snapshot1.data == null ? 0 : snapshots.snapshot1.data!,
           center: Text(
             snapshots.snapshot2.data == null
                 ? "0"

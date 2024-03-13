@@ -23,14 +23,16 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends State<QuizScreen>
+    with SingleTickerProviderStateMixin {
   late QuizScreenController _quizScreenController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _quizScreenController = QuizScreenController();
+    _quizScreenController = QuizScreenController(this);
+    _quizScreenController.forwardAnimation();
   }
 
   @override
@@ -69,8 +71,8 @@ class _QuizScreenState extends State<QuizScreen> {
                       child: CustomCirclePercentIndicatorQuizScreen(
                         outPutStreamTime:
                             _quizScreenController.outPutStreamTime,
-                        outPutAnimationStatus:
-                            _quizScreenController.outPutAnimationStatus,
+                        outPutAnimationProgress:
+                            _quizScreenController.outPutAnimationProgress,
                       ),
                     )
                   ],
