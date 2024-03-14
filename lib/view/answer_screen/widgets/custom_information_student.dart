@@ -40,6 +40,7 @@ class CustomInformationStudent extends StatelessWidget {
             style: GoogleFonts.baloo2(
               fontWeight: FontWeight.bold,
               fontSize: FontSize.f21,
+              color: ColorManager.kPrimaryColor
             ),
           ),
           const SizedBox(
@@ -50,6 +51,8 @@ class CustomInformationStudent extends StatelessWidget {
             style: GoogleFonts.baloo2(
               fontWeight: FontWeight.w400,
               fontSize: FontSize.f21,
+                color: ColorManager.kPrimaryColor
+
             ),
           ),
         ],
