@@ -7,6 +7,7 @@ import 'package:quiz_app/core/resources/font_managers.dart';
 import 'package:quiz_app/core/resources/height_manger.dart';
 import 'package:quiz_app/core/resources/margin_values.dart';
 import 'package:quiz_app/core/resources/padding_values_manager.dart';
+import 'package:quiz_app/core/resources/strings_values.dart';
 import 'package:quiz_app/core/resources/width_values_managers.dart';
 import 'package:quiz_app/view/answer_screen/widgets/custom_question_number_answer_screen.dart';
 import 'package:quiz_app/view/answer_screen/widgets/custom_status_answer_answers_screen.dart';
@@ -40,8 +41,14 @@ class _AnswerScreenState extends State<AnswerScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const CustomInformationStudent(
-                  name: "Ahmed", grade: "Grade :      3     /       5"),
+              ElevatedButton(
+                  onPressed: () {
+                    controller.printList();
+                  },
+                  child: Text("enter")),
+              CustomInformationStudent(
+                  name: controller.studentAnswers[StringsValues.kName],
+                  grade: "Grade :      3     /       5"),
               const SizedBox(
                 height: HeightValuesManager.h20,
               ),
@@ -62,7 +69,7 @@ class _AnswerScreenState extends State<AnswerScreen> {
                   separatorBuilder: (context, index) => const SizedBox(
                         height: HeightValuesManager.h20,
                       ),
-                  itemCount: 20),
+                  itemCount: controller.studentAnswers[StringsValues.kListCorrectAnswer].length),
               const SizedBox(
                 height: HeightValuesManager.h20,
               )
