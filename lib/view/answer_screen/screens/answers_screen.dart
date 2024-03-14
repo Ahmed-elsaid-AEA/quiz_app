@@ -6,6 +6,8 @@ import 'package:quiz_app/core/resources/font_managers.dart';
 import 'package:quiz_app/core/resources/height_manger.dart';
 import 'package:quiz_app/core/resources/margin_values.dart';
 import 'package:quiz_app/core/resources/padding_values_manager.dart';
+import 'package:quiz_app/core/resources/width_values_managers.dart';
+import 'package:quiz_app/view/answer_screen/widgets/custom_question_number_answer_screen.dart';
 
 import '../widgets/custom_information_student.dart';
 
@@ -21,7 +23,20 @@ class AnswerScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            CustomInformationStudent(name: "Ahmed", grade: "Grade :      3     /       5")
+            const CustomInformationStudent(
+                name: "Ahmed", grade: "Grade :      3     /       5"),
+            const SizedBox(
+              height: HeightValuesManager.h20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: PaddingValuesManagers.p16),
+              child: Row(
+                children: [
+                  CustomQuestionNumberAnswerScreen(order: 1),
+                ],
+              ),
+            )
           ],
         ),
       ),
