@@ -1,4 +1,5 @@
 class MarginValuesManagers{
+  static const double m7=7;
   static const double m10=10;
   static const double m16=16;
   static const double m24=24;

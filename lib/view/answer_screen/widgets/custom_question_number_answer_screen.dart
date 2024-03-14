@@ -16,6 +16,7 @@ class CustomQuestionNumberAnswerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: WidthValuesManagers.w58,
+      height: 35,
       padding: const EdgeInsets.symmetric(
         horizontal: PaddingValuesManagers.p10,
       ),

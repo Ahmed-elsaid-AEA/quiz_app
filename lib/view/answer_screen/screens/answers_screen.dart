@@ -32,8 +32,10 @@ class AnswerScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                   horizontal: PaddingValuesManagers.p16),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomQuestionNumberAnswerScreen(order: 1),
+                  const CustomQuestionNumberAnswerScreen(order: 1),
+                  CustomStatusAnswerAnswersScreen()
                 ],
               ),
             )
@@ -43,4 +45,3 @@ class AnswerScreen extends StatelessWidget {
     );
   }
 }
-
