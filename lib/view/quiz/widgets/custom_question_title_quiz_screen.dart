@@ -22,7 +22,8 @@ class CustomQuestionTitleQuizScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: outPutStreamQuestionTitle,
-      builder: (context, snapshot) => Container(
+      builder: (context, snapshot) =>
+          Container(
         padding: const EdgeInsets.all(PaddingValuesManagers.p24),
         alignment: Alignment.center,
         width: double.infinity,

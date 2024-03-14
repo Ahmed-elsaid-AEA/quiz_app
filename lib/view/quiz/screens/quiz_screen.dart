@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quiz_app/controller/quiz/quiz_screen_controller.dart';
 import 'package:quiz_app/core/resources/color_manager.dart';
-import 'package:quiz_app/core/resources/const_values.dart';
-import 'package:quiz_app/core/resources/font_managers.dart';
 import 'package:quiz_app/core/resources/height_manger.dart';
 import 'package:quiz_app/core/resources/padding_values_manager.dart';
 import 'package:quiz_app/core/resources/strings_values.dart';
-import 'package:quiz_app/core/resources/width_values_managers.dart';
 import 'package:quiz_app/core/widgets/custom_material_button.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_app_bar_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_circle_percent_indictor_quiz_screen.dart';
-import 'package:quiz_app/view/quiz/widgets/custom_item_radio_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_list_view_options_quiz_screen.dart';
 import 'package:quiz_app/view/quiz/widgets/custom_question_title_quiz_screen.dart';
 
@@ -56,7 +50,7 @@ class _QuizScreenState extends State<QuizScreen>
       body: Padding(
         padding:
         const EdgeInsets.symmetric(horizontal: PaddingValuesManagers.p24),
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
