@@ -43,7 +43,7 @@ class _AnswerScreenState extends State<AnswerScreen> {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    controller.printList();
+                    controller.compareAnswers();
                   },
                   child: Text("enter")),
               CustomInformationStudent(
@@ -55,21 +55,26 @@ class _AnswerScreenState extends State<AnswerScreen> {
               ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => const Padding(
+                  itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: PaddingValuesManagers.p16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomQuestionNumberAnswerScreen(order: 1),
-                            CustomStatusAnswerAnswersScreen()
+                            CustomStatusAnswerAnswersScreen(
+                              color: controller.answers[index] == true
+                                  ? ColorManager.kGreenBold
+                                  : Colors.red,
+                            )
                           ],
                         ),
                       ),
                   separatorBuilder: (context, index) => const SizedBox(
                         height: HeightValuesManager.h20,
                       ),
-                  itemCount: controller.studentAnswers[StringsValues.kListCorrectAnswer].length),
+                  itemCount: controller
+                      .studentAnswers[StringsValues.kListCorrectAnswer].length),
               const SizedBox(
                 height: HeightValuesManager.h20,
               )

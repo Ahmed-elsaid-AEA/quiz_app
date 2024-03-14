@@ -9,9 +9,9 @@ import 'package:quiz_app/core/resources/width_values_managers.dart';
 
 class CustomStatusAnswerAnswersScreen extends StatelessWidget {
   const CustomStatusAnswerAnswersScreen({
-    super.key,
+    super.key, required this.color,
   });
-
+final Color color;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -21,13 +21,13 @@ class CustomStatusAnswerAnswersScreen extends StatelessWidget {
         ),
         alignment: Alignment.center,
         // width: double.infinity,
-        decoration: const BoxDecoration(
+        decoration:   BoxDecoration(
             boxShadow: [
-              BoxShadow(
+              const BoxShadow(
                   blurRadius: 10, spreadRadius: -10, offset: Offset(0, 10)),
             ],
-            color: ColorManager.kGreenBold,
-            borderRadius: BorderRadius.only(
+            color: color,
+            borderRadius: const BorderRadius.only(
               topRight: Radius.circular(20),
               bottomRight: Radius.circular(20),
               bottomLeft: Radius.circular(20),

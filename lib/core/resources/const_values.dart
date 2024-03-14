@@ -15,7 +15,7 @@ class ConstValue {
   static List<QuestionModel> questionList = [
     QuestionModel(
         question: "what is your job as engineer ",
-        correctAnswer: "flutter developer",
+        correctAnswer:0,
         listAnswers: [
           "flutter developer",
           "doctor",
@@ -23,7 +23,7 @@ class ConstValue {
         ]),
     QuestionModel(
         question: "what is make flutter ",
-        correctAnswer: "google",
+        correctAnswer:2,
         listAnswers: [
           "microsoft",
           "oracle",
@@ -32,7 +32,7 @@ class ConstValue {
         ]),
     QuestionModel(
         question: "What is the capital of France?",
-        correctAnswer: "Paris",
+        correctAnswer: 1,
         listAnswers: [
           "Berlin",
           "Paris",
@@ -41,7 +41,7 @@ class ConstValue {
           "Rome",
         ]), QuestionModel(
         question: "Who wrote the play \"Romeo and Juliet\"",
-        correctAnswer: "William",
+        correctAnswer: 1,
         listAnswers: [
           "William Shakespeare",
           "me",
