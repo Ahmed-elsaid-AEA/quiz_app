@@ -7,7 +7,8 @@ import 'package:quiz_app/core/resources/width_values_managers.dart';
 
 class CustomQuestionNumberAnswerScreen extends StatelessWidget {
   const CustomQuestionNumberAnswerScreen({
-    super.key, required this.order,
+    super.key,
+    required this.order,
   });
 
   final int order;
@@ -23,15 +24,16 @@ class CustomQuestionNumberAnswerScreen extends StatelessWidget {
       alignment: Alignment.center,
       decoration: const BoxDecoration(
           boxShadow: [
-            BoxShadow(blurRadius: 5, spreadRadius: -5, offset: Offset(0, 10)),
+            BoxShadow(blurRadius:10, spreadRadius: -10, offset: Offset(0, 10)),
           ],
-          color: ColorManager.kWhiteColor,
+          color: ColorManager.kGreenBold,
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
             topLeft: Radius.circular(20),
           )),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -39,6 +41,7 @@ class CustomQuestionNumberAnswerScreen extends StatelessWidget {
             style: GoogleFonts.baloo2(
               fontWeight: FontWeight.bold,
               fontSize: FontSize.f21,
+              color: ColorManager.kWhiteColor
             ),
           ),
         ],

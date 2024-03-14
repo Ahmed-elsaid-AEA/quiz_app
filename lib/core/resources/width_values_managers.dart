@@ -1,4 +1,5 @@
 class WidthValuesManagers {
+  static const double w4 = 4;
   static const double w10 = 10;
   static const double w12 = 12;
   static const double w20 =20;
