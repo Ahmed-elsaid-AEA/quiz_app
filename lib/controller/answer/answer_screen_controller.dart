@@ -23,4 +23,14 @@ class AnswerScreenController {
   void printList() {
     print(studentAnswers);
   }
+
+  int getCountCorrectAnswer() {
+    int count = 0;
+    for (bool i in answers) {
+     if( i == true) {
+       count++;
+     }
+    }
+    return count;
+  }
 }

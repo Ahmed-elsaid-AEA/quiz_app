@@ -48,7 +48,7 @@ class QuizScreenController {
     animationController = AnimationController(
       vsync: vsync,
       duration: const Duration(
-        seconds: 1,
+        seconds: 30,
       ),
     );
     countQuestion = ConstValue.questionList.length;

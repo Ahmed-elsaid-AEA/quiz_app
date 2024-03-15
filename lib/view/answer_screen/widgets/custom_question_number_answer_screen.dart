@@ -8,10 +8,11 @@ import 'package:quiz_app/core/resources/width_values_managers.dart';
 class CustomQuestionNumberAnswerScreen extends StatelessWidget {
   const CustomQuestionNumberAnswerScreen({
     super.key,
-    required this.order,
+    required this.order, required this.isCorrect,
   });
 
   final int order;
+  final bool isCorrect;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,12 @@ class CustomQuestionNumberAnswerScreen extends StatelessWidget {
         horizontal: PaddingValuesManagers.p10,
       ),
       alignment: Alignment.center,
-      decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(blurRadius:10, spreadRadius: -10, offset: Offset(0, 10)),
+      decoration:   BoxDecoration(
+          boxShadow: const [
+            BoxShadow(blurRadius: 10, spreadRadius: -10, offset: Offset(0, 10)),
           ],
-          color: ColorManager.kGreenBold,
-          borderRadius: BorderRadius.only(
+          color:isCorrect==true? ColorManager.kGreenBold:Colors.red,
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
             topLeft: Radius.circular(20),
@@ -39,10 +40,9 @@ class CustomQuestionNumberAnswerScreen extends StatelessWidget {
           Text(
             "$order",
             style: GoogleFonts.baloo2(
-              fontWeight: FontWeight.bold,
-              fontSize: FontSize.f21,
-              color: ColorManager.kWhiteColor
-            ),
+                fontWeight: FontWeight.bold,
+                fontSize: FontSize.f21,
+                color: ColorManager.kWhiteColor),
           ),
         ],
       ),

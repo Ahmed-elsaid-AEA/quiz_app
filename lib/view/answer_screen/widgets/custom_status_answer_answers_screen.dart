@@ -79,8 +79,10 @@ class CustomStatusAnswerAnswersScreen extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(20))),
               child: Row(
                 children: [
-                  const Icon(
-                    CupertinoIcons.checkmark_alt_circle_fill,
+                  Icon(
+                    isCorrect == true
+                        ? CupertinoIcons.checkmark_alt_circle_fill
+                        : Icons.clear,
                     color: ColorManager.kPrimaryColor,
                   ),
                   const SizedBox(
@@ -88,7 +90,7 @@ class CustomStatusAnswerAnswersScreen extends StatelessWidget {
                   ),
                   Expanded(
                       child: Text(
-                    "$answer",
+                    answer,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.baloo2(
                         fontSize: FontSize.f18,
@@ -98,45 +100,46 @@ class CustomStatusAnswerAnswersScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                  horizontal: PaddingValuesManagers.p20,
-                  vertical: PaddingValuesManagers.p16),
-              padding: const EdgeInsets.symmetric(
-                  vertical: PaddingValuesManagers.p6,
-                  horizontal: PaddingValuesManagers.p12),
-              alignment: Alignment.center,
-              // width: double.infinity,
-              decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 10,
-                        spreadRadius: -10,
-                        offset: Offset(0, 10)),
+            if (isCorrect == false)
+              Container(
+                margin: const EdgeInsets.symmetric(
+                    horizontal: PaddingValuesManagers.p20,
+                    vertical: PaddingValuesManagers.p16),
+                padding: const EdgeInsets.symmetric(
+                    vertical: PaddingValuesManagers.p6,
+                    horizontal: PaddingValuesManagers.p12),
+                alignment: Alignment.center,
+                // width: double.infinity,
+                decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 10,
+                          spreadRadius: -10,
+                          offset: Offset(0, 10)),
+                    ],
+                    color: ColorManager.kWhiteColor,
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Row(
+                  children: [
+                    const Icon(
+                      CupertinoIcons.checkmark_alt_circle_fill,
+                      color: ColorManager.kPrimaryColor,
+                    ),
+                    const SizedBox(
+                      width: WidthValuesManagers.w4,
+                    ),
+                    Expanded(
+                        child: Text(
+                      "$correctAnswer",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.baloo2(
+                          fontSize: FontSize.f18,
+                          color: ColorManager.kPrimaryColor,
+                          fontWeight: FontWeight.w700),
+                    ))
                   ],
-                  color: ColorManager.kWhiteColor,
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              child: Row(
-                children: [
-                  const Icon(
-                    CupertinoIcons.checkmark_alt_circle_fill,
-                    color: ColorManager.kPrimaryColor,
-                  ),
-                  const SizedBox(
-                    width: WidthValuesManagers.w4,
-                  ),
-                  Expanded(
-                      child: Text(
-                    "$correctAnswer",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.baloo2(
-                        fontSize: FontSize.f18,
-                        color: ColorManager.kPrimaryColor,
-                        fontWeight: FontWeight.w700),
-                  ))
-                ],
+                ),
               ),
-            ),
           ],
         ),
       ),

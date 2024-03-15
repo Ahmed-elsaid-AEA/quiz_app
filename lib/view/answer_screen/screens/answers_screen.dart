@@ -41,14 +41,14 @@ class _AnswerScreenState extends State<AnswerScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    controller.compareAnswers();
-                  },
-                  child: Text("enter")),
+
               CustomInformationStudent(
                   name: controller.studentAnswers[StringsValues.kName],
-                  grade: "Grade :      3     /       5"),
+                  grade: "Grade :      ${
+                  controller.getCountCorrectAnswer()
+                  }     /       ${
+                  controller.answers.length
+                  }"),
               const SizedBox(
                 height: HeightValuesManager.h20,
               ),
@@ -56,18 +56,20 @@ class _AnswerScreenState extends State<AnswerScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index) => Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: PaddingValuesManagers.p16),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const CustomQuestionNumberAnswerScreen(order: 1),
+                            CustomQuestionNumberAnswerScreen(
+                                order: index + 1,
+                                isCorrect: controller.answers[index]),
                             CustomStatusAnswerAnswersScreen(
                               question: ConstValue.questionList[index].question,
                               answer: controller.studentAnswers[StringsValues
                                           .kListCorrectAnswer][index] ==
                                       -1
-                                  ? "not found"
+                                  ? "user not choose"
                                   : ConstValue.questionList[index].listAnswers[
                                       controller.studentAnswers[StringsValues
                                           .kListCorrectAnswer][index]],
