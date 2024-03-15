@@ -41,7 +41,7 @@ class ConstValue {
           "Rome",
         ]), QuestionModel(
         question: "Who wrote the play \"Romeo and Juliet\"",
-        correctAnswer: 1,
+        correctAnswer: 0,
         listAnswers: [
           "William Shakespeare",
           "me",

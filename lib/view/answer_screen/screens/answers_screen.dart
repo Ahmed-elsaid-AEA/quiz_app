@@ -61,11 +61,22 @@ class _AnswerScreenState extends State<AnswerScreen> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomQuestionNumberAnswerScreen(order: 1),
+                            const CustomQuestionNumberAnswerScreen(order: 1),
                             CustomStatusAnswerAnswersScreen(
-                              color: controller.answers[index] == true
-                                  ? ColorManager.kGreenBold
-                                  : Colors.red,
+                              question: ConstValue.questionList[index].question,
+                              answer: controller.studentAnswers[StringsValues
+                                          .kListCorrectAnswer][index] ==
+                                      -1
+                                  ? "not found"
+                                  : ConstValue.questionList[index].listAnswers[
+                                      controller.studentAnswers[StringsValues
+                                          .kListCorrectAnswer][index]],
+                              correctAnswer: ConstValue
+                                  .questionList[index]
+                                  .listAnswers[ConstValue
+                                      .questionList[index].correctAnswer]
+                                  .toString(),
+                              isCorrect: controller.answers[index],
                             )
                           ],
                         ),
